@@ -1,0 +1,113 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/game_background">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="40dp"
+        android:background="#00E5CAE1"
+        android:gravity="center"
+        android:shadowColor="#7f6eff"
+        android:shadowRadius="15"
+        android:fontFamily="monospace"
+        android:text="GUESS THE NUMBER GAME"
+        android:textColor="#1D2668"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="98dp"
+        android:gravity="center"
+        android:text="What is the number I am thinking of? Choose from 1 to 100."
+        android:textColor="#34324E"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_attempts_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginBottom="266dp"
+        android:gravity="center_horizontal"
+        android:text="Attempts left: 10"
+        android:textColor="#34324E"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/edit_text_guess_number"
+        android:layout_width="250dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:inputType="number"
+        android:hint="ENTER A NUMBER"
+        android:ems="25"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/button_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginBottom="233dp"
+        android:text="GUESS"
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:layout_below="@id/edit_text_guess_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_view_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/button_guess"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/button_play_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again"
+        android:layout_below="@id/text_view_result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
+</RelativeLayout>
