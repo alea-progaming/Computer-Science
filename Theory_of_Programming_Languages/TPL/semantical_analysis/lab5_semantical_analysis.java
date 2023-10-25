@@ -20,11 +20,15 @@ public class lab5_semantical_analysis {
         String[] tokens = expression.split("\\s+"); // int  ->  num  ->  =  ->  3.0  ->  ;s
         char lastCharacter = tokens[3].charAt(tokens[3].length() - 1);
 
+
         String dataType = tokens[0];
         String variable = tokens[1];
         String delimiter = expression.replace(";", ""); //to not read the semicolon as one with the value
         String[] temp = delimiter.split("\\s+");
         String value = temp[3];
+
+        
+        
         
         // Check if the expression has the correct structure
         if (tokens.length != 4 || !tokens[2].equals("=") || lastCharacter != ';' || variable.matches("\\d+")) {
