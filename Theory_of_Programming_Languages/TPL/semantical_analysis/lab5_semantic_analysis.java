@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class lab5_semantical_analysis {
+public class lab5_semantic_analysis {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
