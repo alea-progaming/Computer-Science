@@ -51,8 +51,8 @@ public class lab4_Purugganan {
                     System.out.print("<value>");
                 }
                     System.out.print("<delimiter>");
-                
-                
+            } else {
+                System.out.println("Error");
             }
         }
     }
