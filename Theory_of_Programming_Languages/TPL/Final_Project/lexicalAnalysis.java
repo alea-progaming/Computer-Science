@@ -12,7 +12,7 @@ public class lexicalAnalysis {
             String dataTypeRegex = "\\b(int|double|char|String)\\b";
             String assignmentOperatorRegex = "=";
             String delimiterRegex = ";";
-            String valueRegex = "\\b(\\d+|\"[^\"]*\"|'[^']*')\\b";
+            String valueRegex = "(\"[^\"]*\"|'[^']*'|\\d+(\\.\\d+)?)";
             String identifierRegex = "\\b[a-zA-Z_]\\w*\\b";
 
             // Combine the regular expressions into a single pattern

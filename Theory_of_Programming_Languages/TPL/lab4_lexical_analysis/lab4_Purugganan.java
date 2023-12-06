@@ -48,7 +48,7 @@ public class lab4_Purugganan {
                 if (isIdentifier(iden)) {
                     System.out.print("<identifier> ");
                 } else if (isValue(iden)) {
-                    System.out.print("<value>");
+                    System.out.print("<value> ");
                 }
                     System.out.print("<delimiter>");
             } else {

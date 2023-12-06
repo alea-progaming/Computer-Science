@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 //import static TPL.lexicalAnalysis.syntaxAnalysis;
+import static Final_Project.semanticAnalysis.performSemanticAnalysis;
 import static Final_Project.syntaxAnalysis.syntaxAnalysis;
+import Final_Project.semanticAnalysis;
 
 public class Main {
     static lexicalAnalysis lexicalAnalyzer;
@@ -127,6 +129,23 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codeText = code.getText();
+                lexicalAnalyzer = new lexicalAnalysis(codeText);
+                lexicalResult = lexicalAnalyzer.analyze();
+
+                if (syntaxAnalysis(lexicalResult)) {
+                    // If syntax analysis passed, perform semantic analysis
+                    if (performSemanticAnalysis(lexicalResult)) {
+                        result.setText("Semantic analysis passed.");
+                        semantic.setEnabled(true);
+                    } else {
+                        result.setText("Semantic analysis failed. Invalid semantics.");
+                        // Display a pop-up or take appropriate action
+                    }
+                } else {
+                    result.setText("Semantic analysis failed. Invalid syntax.");
+                    // Display a pop-up or take appropriate action
+
+                }
             }
         });
 
