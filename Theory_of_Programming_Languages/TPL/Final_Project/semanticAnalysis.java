@@ -1,38 +1,33 @@
 package Final_Project;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class semanticAnalysis {
-    public static boolean performSemanticAnalysis(String lexicalResult) {
-        // Add your semantic analysis logic here using the extracted tokens
-        // For example, you can use extractToken method to get specific tokens
-        String dataType = extractToken(lexicalResult, "<data_type>");
-        String identifier = extractToken(lexicalResult, "<identifier>");
-        String assignmentOperator = extractToken(lexicalResult, "<assignment_operator>");
-        String value = extractToken(lexicalResult, "<value>");
+    private String code;
 
-        // Check if the assigned value has the correct data type
-        return isValueCompatibleWithDataType(value, dataType);
+    public semanticAnalysis(String code) {
+        this.code = code;
     }
 
-    // Helper method to extract a token from the lexical result
-    private static String extractToken(String lexicalResult, String token) {
-        String regex = token.replace("<", "\\<").replace(">", "\\>") + "\\s*";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(lexicalResult);
+    public boolean semantic() {
+        // Define a regular expression for variable declaration
+        String regex = "\"(String|int|double|char)\\s+\\w+\\s*=\\s*\\w+\\s*;";
 
-        if (matcher.find()) {
-            return matcher.group().trim();
+
+        // Create a Pattern object
+        Pattern pattern = Pattern.compile(regex);
+
+        // Create a Matcher object
+        Matcher matcher = pattern.matcher(code);
+
+        // Check if any part of the code matches the pattern
+        while (matcher.find()) {
+            // At least one valid variable declaration found
+            return true;
         }
 
-        return null; // Token not found
-    }
-
-    // Updated semantic analysis logic for type checking
-    private static boolean isValueCompatibleWithDataType(String value, String dataType) {
-        return "<String>".equals(dataType) && value.matches("\"[^\"]*\"") ? true : false;
+        // No valid variable declaration found
+        return false;
     }
 }

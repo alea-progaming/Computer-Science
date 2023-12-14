@@ -1,6 +1,7 @@
 package Final_Project;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -8,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 //import static TPL.lexicalAnalysis.syntaxAnalysis;
-import static Final_Project.semanticAnalysis.performSemanticAnalysis;
+//import static Final_Project.semanticAnalysis.performSemanticAnalysis;
 import static Final_Project.syntaxAnalysis.syntaxAnalysis;
 import Final_Project.semanticAnalysis;
 
@@ -17,30 +18,43 @@ public class Main {
     static String lexicalResult;
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Final Project");
         frame.setSize(800, 400);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.PINK);
+        frame.setLocationRelativeTo(null); // Center the frame on the screen
+
 
         JButton openFile = new JButton("Open File");
         openFile.setBounds(50, 50, 150, 30);
+        frame.add(openFile);
+        openFile.setBackground(new Color(203, 175, 225));
         frame.add(openFile);
 
         JButton lexical = new JButton("Lexical Analysis");
         lexical.setBounds(50, 100, 150, 30);
         frame.add(lexical);
+        lexical.setBackground(new Color(203, 175, 225));
+        frame.add(lexical);
 
         JButton syntax = new JButton("Syntax Analysis");
         syntax.setBounds(50, 150, 150, 30);
+        frame.add(syntax);
+        syntax.setBackground(new Color(203, 175, 225));
         frame.add(syntax);
 
         JButton semantic = new JButton("Semantic Analysis");
         semantic.setBounds(50, 200, 150, 30);
         frame.add(semantic);
+        semantic.setBackground(new Color(203, 175, 225));
+        frame.add(semantic);
 
         JButton clear = new JButton("Clear");
         clear.setBounds(50, 250, 150, 30);
+        frame.add(clear);
+        clear.setBackground(new Color(203, 175, 225));
         frame.add(clear);
 
         JTextField result = new JTextField("Result: ");
@@ -134,20 +148,18 @@ public class Main {
 
                 if (syntaxAnalysis(lexicalResult)) {
                     // If syntax analysis passed, perform semantic analysis
-                    if (performSemanticAnalysis(lexicalResult)) {
-                        result.setText("Semantic analysis passed.");
-                        semantic.setEnabled(true);
-                    } else {
-                        result.setText("Semantic analysis failed. Invalid semantics.");
-                        // Display a pop-up or take appropriate action
-                    }
-                } else {
-                    result.setText("Semantic analysis failed. Invalid syntax.");
-                    // Display a pop-up or take appropriate action
+                    semanticAnalysis semanticAnalyzer = new semanticAnalysis(codeText);
+                    boolean isSemanticCorrect = semanticAnalyzer.semantic();
 
+                    if (isSemanticCorrect) {
+                        result.setText("Semantic Analysis Passed");
+                    } else {
+                        result.setText("Semantic Analysis Failed");
+                    }
                 }
             }
         });
+
 
         clear.addActionListener(new ActionListener() {
             @Override
