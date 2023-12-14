@@ -12,8 +12,7 @@ public class semanticAnalysis {
 
     public boolean semantic() {
         // Define a regular expression for variable declaration
-        String regex = "\"(String|int|double|char)\\s+\\w+\\s*=\\s*\\w+\\s*;";
-
+        String regex = "(String|int|double|char)\\s+\\w+\\s*=\\s*\"?\\w+\"?\\s*;";
 
         // Create a Pattern object
         Pattern pattern = Pattern.compile(regex);
