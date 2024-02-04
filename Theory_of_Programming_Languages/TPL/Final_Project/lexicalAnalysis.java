@@ -15,31 +15,25 @@ public class lexicalAnalysis {
             String valueRegex = "(\"[^\"]*\"|'[^']*'|\\d+(\\.\\d+)?)";
             String identifierRegex = "\\b[a-zA-Z_]\\w*\\b";
 
-            // Combine the regular expressions into a single pattern
             String combinedRegex = String.format("(%s)|(%s)|(%s)|(%s)|(%s)", dataTypeRegex, assignmentOperatorRegex,
                     delimiterRegex, valueRegex, identifierRegex);
             Pattern pattern = Pattern.compile(combinedRegex);
 
-            // Use a StringBuilder to store the result
             StringBuilder result = new StringBuilder();
 
-            // Use a Matcher to find matches in the input code
             Matcher matcher = pattern.matcher(code);
-            int lastMatchEnd = 0; // Track the end of the last match
+            int lastMatchEnd = 0;
             while (matcher.find()) {
                 int start = matcher.start();
                 int end = matcher.end();
 
-                // Check for any text between the last match and the current match
                 String unmatchedText = code.substring(lastMatchEnd, start).trim();
                 if (!unmatchedText.isEmpty()) {
-                    // If there is text between matches, mark it as an error
                     result.append("<error> ");
                 }
 
                 String match = matcher.group();
 
-                // Categorize the token based on the matched pattern
                 if (match.matches(dataTypeRegex)) {
                     result.append("<data_type> ");
                 } else if (match.equals("=")) {
@@ -52,13 +46,11 @@ public class lexicalAnalysis {
                     result.append("<identifier> ");
                 }
 
-                lastMatchEnd = end; // Update the last match end position
+                lastMatchEnd = end;
             }
 
-            // Check for any text after the last match
             String remainingText = code.substring(lastMatchEnd).trim();
             if (!remainingText.isEmpty()) {
-                // If there is text after the last match, mark it as an error
                 result.append("<error> ");
             }
 

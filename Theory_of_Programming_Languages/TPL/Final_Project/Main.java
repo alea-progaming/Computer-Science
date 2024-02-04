@@ -8,10 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-//import static TPL.lexicalAnalysis.syntaxAnalysis;
-//import static Final_Project.semanticAnalysis.performSemanticAnalysis;
 import static Final_Project.syntaxAnalysis.syntaxAnalysis;
-import Final_Project.semanticAnalysis;
 
 public class Main {
     static lexicalAnalysis lexicalAnalyzer;
@@ -24,7 +21,7 @@ public class Main {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.PINK);
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
+        frame.setLocationRelativeTo(null);
 
 
         JButton openFile = new JButton("Open File");
@@ -71,7 +68,6 @@ public class Main {
         semantic.setEnabled(false);
 
 
-        // action listeners
         openFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,14 +94,13 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codeText = code.getText();
-                // Create an instance using the constructor
                 lexicalAnalyzer = new lexicalAnalysis(codeText);
-                // Call the analyze() method
                 lexicalResult = lexicalAnalyzer.analyze();
                 result.setText(lexicalResult);
 
                 if (lexicalResult.contains("<error>")) {
                     result.setText("Lexical analysis failed. Unexpected token. ");
+                    JOptionPane.showMessageDialog(frame, "Lexical analysis failed! Syntax button is disabled.", "Analysis Result", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     result.setText(lexicalResult);
@@ -130,7 +125,7 @@ public class Main {
 
                 } else {
                     result.setText("Syntax analysis failed. Invalid syntax.");
-                    //pop up
+                    JOptionPane.showMessageDialog(frame, "Syntax analysis failed! Semantic button is disabled.", "Analysis Result", JOptionPane.INFORMATION_MESSAGE);
 
                 }
             }
@@ -173,14 +168,6 @@ public class Main {
         });
 
     }
-
-
-
-
-
-
-
-
 }
 
 
